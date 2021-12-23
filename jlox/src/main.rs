@@ -1,3 +1,5 @@
+use anyhow::Result;
+use std::fs;
 use std::path::PathBuf;
 use structopt::StructOpt;
 
@@ -9,14 +11,17 @@ struct Opt {
     file: Option<PathBuf>,
 }
 
-fn main() {
+pub fn main() -> Result<()> {
     env_logger::init();
 
-    let opt = Opt::from_args();
-
-    if let Some(file) = opt.file {
+    if let Some(file) = Opt::from_args().file {
         log::info!("Reading input form file {:#?}.", &file);
+        let file_contents = fs::read_to_string(file)?;
+
+        log::debug!("File contents: {:#?}", file_contents);
     } else {
         log::info!("Running in interactive mode.");
     }
+
+    Ok(())
 }

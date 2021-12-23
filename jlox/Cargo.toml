@@ -7,9 +7,19 @@ edition = "2021"
 
 [dependencies]
 
+# Simplify returning errors.
+anyhow = "1.0.51"
+
 # Command line argument parser.
 structopt = "0.3"
 
 # Basic Logging.
 log = "0.4.0"
 env_logger = "0.9.0"
+
+[dev-dependencies]
+# Integration testing commmands.
+assert_cmd = "2.0.2"
+
+# Predicate testing.
+predicates = "2.1.0"
